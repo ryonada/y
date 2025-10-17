@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pteams | Multi Monitor Software | Turn Devices into Additional Displays</title>
+    <title>Pteams | Software Multi Monitor | Ubah Perangkat menjadi Layar Tambahan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,15 +14,20 @@
             <div class="logo">
                 <div class="logo-text">Pteams</div>
             </div>
-            <button class="mobile-menu-btn">☰</button>
+            <div class="header-controls">
+                <button id="theme-toggle" class="theme-toggle" title="Ubah tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn">☰</button>
+            </div>
             <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#download">Download</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#how-it-works">Cara Kerja</a></li>
+                <li><a href="#download">Unduh</a></li>
+                <li><a href="#testimonials">Testimoni</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="#support">Support</a></li>
+                <li><a href="#support">Dukungan</a></li>
             </ul>
         </div>
     </header>
@@ -30,11 +35,11 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container fade-in">
-            <h1>Turn Any Device into an Additional Display</h1>
-            <p>Pteams is the leading software solution that allows you to use smartphones, tablets, and other computers as additional monitors for your Windows PC over your network. Increase productivity with multi-monitor setup without buying extra hardware.</p>
+            <h1>Ubah Perangkat Apapun Menjadi Layar Tambahan</h1>
+            <p>Pteams adalah solusi software terdepan yang memungkinkan Anda menggunakan smartphone, tablet, dan komputer lain sebagai monitor tambahan untuk PC Windows Anda melalui jaringan. Tingkatkan produktivitas dengan setup multi-monitor tanpa membeli perangkat keras tambahan.</p>
             <div class="hero-buttons">
-                <a href="#download" class="btn">Download Now <i class="fas fa-arrow-down"></i></a>
-                <a href="#how-it-works" class="btn btn-outline">Watch Demo <i class="fas fa-play-circle"></i></a>
+                <a href="#download" class="btn">Unduh Sekarang <i class="fas fa-arrow-down"></i></a>
+                <a href="#how-it-works" class="btn btn-outline">Tonton Demo <i class="fas fa-play-circle"></i></a>
             </div>
         </div>
     </section>
@@ -42,44 +47,44 @@
     <!-- Features Section -->
     <section id="features">
         <div class="container">
-            <h2 class="section-title">Powerful Features</h2>
-            <p class="section-subtitle">Extend your desktop workspace with these amazing capabilities used by millions worldwide</p>
+            <h2 class="section-title">Fitur Unggulan</h2>
+            <p class="section-subtitle">Perluas ruang kerja desktop Anda dengan kemampuan luar biasa yang digunakan oleh jutaan orang di seluruh dunia</p>
             
             <div class="features-grid">
                 <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-desktop"></i></div>
-                    <h3>Multi-Monitor Support</h3>
-                    <p>Extend your desktop across multiple devices simultaneously for enhanced productivity. No limits on the number of additional displays.</p>
+                    <h3>Dukungan Multi-Monitor</h3>
+                    <p>Perluas desktop Anda ke beberapa perangkat secara bersamaan untuk produktivitas yang lebih baik. Tidak ada batasan jumlah layar tambahan.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    <h3>High Performance</h3>
-                    <p>Low latency and high refresh rates for smooth cursor movement and video playback. Optimized for both Wi-Fi and Ethernet.</p>
+                    <h3>Kinerja Tinggi</h3>
+                    <p>Latensi rendah dan refresh rate tinggi untuk pergerakan kursor dan pemutaran video yang lancar. Dioptimalkan untuk Wi-Fi dan Ethernet.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-network-wired"></i></div>
-                    <h3>Network Connectivity</h3>
-                    <p>Works over Wi-Fi and Ethernet connections without requiring special cables. Secure connection with optional password protection.</p>
+                    <h3>Konektivitas Jaringan</h3>
+                    <p>Bekerja melalui koneksi Wi-Fi dan Ethernet tanpa memerlukan kabel khusus. Koneksi aman dengan perlindungan kata sandi opsional.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-mouse-pointer"></i></div>
-                    <h3>Touch & Pen Support</h3>
-                    <p>Use touch screens, stylus pens, and other input methods on your extended displays. Perfect for designers and creatives.</p>
+                    <h3>Dukungan Sentuh & Pen</h3>
+                    <p>Gunakan layar sentuh, stylus, dan metode input lainnya pada layar tambahan Anda. Sempurna untuk desainer dan kreatif.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-volume-up"></i></div>
-                    <h3>Audio Streaming</h3>
-                    <p>Stream audio from your primary PC to secondary devices along with video. Perfect for multimedia presentations.</p>
+                    <h3>Streaming Audio</h3>
+                    <p>Streaming audio dari PC utama Anda ke perangkat sekunder bersama dengan video. Sempurna untuk presentasi multimedia.</p>
                 </div>
                 
                 <div class="feature-card fade-in">
                     <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
                     <h3>Cross-Platform</h3>
-                    <p>Works with Windows, Android, iOS, and even web browsers with the HTML5 viewer. Universal compatibility.</p>
+                    <p>Bekerja dengan Windows, Android, iOS, dan bahkan browser web dengan viewer HTML5. Kompatibilitas universal.</p>
                 </div>
             </div>
         </div>
@@ -88,32 +93,32 @@
     <!-- How It Works Section -->
     <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">Setting up Pteams is simple and straightforward. Get started in just a few minutes</p>
+            <h2 class="section-title">Cara Kerja</h2>
+            <p class="section-subtitle">Menyiapkan Pteams sederhana dan mudah. Mulai hanya dalam beberapa menit</p>
             
             <div class="steps">
                 <div class="step fade-in">
                     <div class="step-number">1</div>
-                    <h3>Install Server</h3>
-                    <p>Download and install the Pteams server software on your Windows PC. Compatible with Windows 10/11.</p>
+                    <h3>Instal Server</h3>
+                    <p>Unduh dan instal software server Pteams di PC Windows Anda. Kompatibel dengan Windows 10/11.</p>
                 </div>
                 
                 <div class="step fade-in">
                     <div class="step-number">2</div>
-                    <h3>Install Viewer</h3>
-                    <p>Install the Pteams viewer app on your secondary devices (phones, tablets, etc.). Available for all major platforms.</p>
+                    <h3>Instal Viewer</h3>
+                    <p>Instal aplikasi viewer Pteams di perangkat sekunder Anda (ponsel, tablet, dll.). Tersedia untuk semua platform utama.</p>
                 </div>
                 
                 <div class="step fade-in">
                     <div class="step-number">3</div>
-                    <h3>Connect</h3>
-                    <p>Ensure all devices are on the same network and connect them through the app. Automatic discovery makes it easy.</p>
+                    <h3>Hubungkan</h3>
+                    <p>Pastikan semua perangkat berada di jaringan yang sama dan hubungkan melalui aplikasi. Penemuan otomatis memudahkan.</p>
                 </div>
                 
                 <div class="step fade-in">
                     <div class="step-number">4</div>
-                    <h3>Extend Display</h3>
-                    <p>Configure your Windows display settings to extend your desktop to the new screens. Drag and drop windows between displays.</p>
+                    <h3>Perluas Tampilan</h3>
+                    <p>Konfigurasi pengaturan tampilan Windows Anda untuk memperluas desktop ke layar baru. Seret dan lepas jendela antar layar.</p>
                 </div>
             </div>
         </div>
@@ -122,40 +127,40 @@
     <!-- Downloads Section -->
     <section id="download">
         <div class="container">
-            <h2 class="section-title">Download Pteams</h2>
-            <p class="section-subtitle">Get the software for your specific platform and start extending your display today</p>
+            <h2 class="section-title">Unduh Pteams</h2>
+            <p class="section-subtitle">Dapatkan software untuk platform spesifik Anda dan mulai memperluas tampilan hari ini</p>
             
             <div class="downloads-grid">
                 <div class="download-card fade-in">
                     <div class="download-icon"><i class="fab fa-windows"></i></div>
                     <h3>Windows Server</h3>
-                    <p>For your primary Windows PC (Windows 10/11, 64-bit & ARM64)</p>
-                    <a href="#" class="btn" style="margin-top: 20px;">Download <i class="fas fa-download"></i></a>
-                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Version 1.0.40 | 15 MB</div>
+                    <p>Untuk PC Windows utama Anda (Windows 10/11, 64-bit & ARM64)</p>
+                    <a href="#" class="btn" style="margin-top: 20px;">Unduh <i class="fas fa-download"></i></a>
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Versi 1.0.40 | 15 MB</div>
                 </div>
                 
                 <div class="download-card fade-in">
                     <div class="download-icon"><i class="fab fa-android"></i></div>
                     <h3>Android Viewer</h3>
-                    <p>For Android phones and tablets (Android 5.0 and above)</p>
-                    <a href="#" class="btn" style="margin-top: 20px;">Download <i class="fas fa-download"></i></a>
-                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Version 1.0.36 | 8 MB</div>
+                    <p>Untuk ponsel dan tablet Android (Android 5.0 ke atas)</p>
+                    <a href="#" class="btn" style="margin-top: 20px;">Unduh <i class="fas fa-download"></i></a>
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Versi 1.0.36 | 8 MB</div>
                 </div>
                 
                 <div class="download-card fade-in">
                     <div class="download-icon"><i class="fab fa-apple"></i></div>
                     <h3>iOS Viewer</h3>
-                    <p>For iPhones and iPads (iOS 12.0 and above)</p>
-                    <a href="#" class="btn" style="margin-top: 20px;">Download <i class="fas fa-download"></i></a>
-                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Version 1.0.28 | 12 MB</div>
+                    <p>Untuk iPhone dan iPad (iOS 12.0 ke atas)</p>
+                    <a href="#" class="btn" style="margin-top: 20px;">Unduh <i class="fas fa-download"></i></a>
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Versi 1.0.28 | 12 MB</div>
                 </div>
                 
                 <div class="download-card fade-in">
                     <div class="download-icon"><i class="fas fa-globe"></i></div>
                     <h3>HTML5 Viewer</h3>
-                    <p>For any device with a modern web browser</p>
-                    <a href="#" class="btn btn-orange" style="margin-top: 20px;">Use Online <i class="fas fa-external-link-alt"></i></a>
-                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">No installation required</div>
+                    <p>Untuk perangkat apapun dengan browser web modern</p>
+                    <a href="#" class="btn btn-orange" style="margin-top: 20px;">Gunakan Online <i class="fas fa-external-link-alt"></i></a>
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Tidak perlu instalasi</div>
                 </div>
             </div>
         </div>
@@ -164,45 +169,45 @@
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="container">
-            <h2 class="section-title">What Our Users Say</h2>
-            <p class="section-subtitle">Join over 5 million satisfied users worldwide who have transformed their workflow with Pteams</p>
+            <h2 class="section-title">Apa Kata Pengguna Kami</h2>
+            <p class="section-subtitle">Bergabunglah dengan lebih dari 5 juta pengguna puas di seluruh dunia yang telah mengubah alur kerja mereka dengan Pteams</p>
             
             <div class="testimonials-grid">
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-text">
-                        "Pteams has completely changed how I work. As a developer, I can now have my code on one screen, documentation on another, and testing on my tablet. It's incredibly smooth and reliable."
+                        "Pteams benar-benar mengubah cara saya bekerja. Sebagai developer, saya sekarang dapat memiliki kode di satu layar, dokumentasi di layar lain, dan pengujian di tablet saya. Sangat lancar dan andal."
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">JD</div>
+                        <div class="author-avatar">O</div>
                         <div class="author-info">
-                            <h4>John Davis</h4>
-                            <p>Software Developer</p>
+                            <h4>Oryon</h4>
+                            <p>Pengembang Software</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-text">
-                        "I was skeptical at first, but Pteams delivered beyond my expectations. The performance is excellent even when streaming HD content. It's like having expensive hardware for free!"
+                        "Awalnya saya ragu, tetapi Pteams melampaui harapan saya. Kinerjanya sangat baik bahkan saat streaming konten HD. Seperti memiliki perangkat keras mahal secara gratis!"
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">SR</div>
+                        <div class="author-avatar">R</div>
                         <div class="author-info">
-                            <h4>Sarah Rodriguez</h4>
-                            <p>Graphic Designer</p>
+                            <h4>Ryonada</h4>
+                            <p>Desainer Grafis</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-text">
-                        "The ability to use my old tablets as additional monitors has been a game-changer for my productivity. Setup was straightforward, and it works flawlessly every day."
+                        "Kemampuan menggunakan tablet lama saya sebagai monitor tambahan telah mengubah produktivitas saya. Pengaturannya mudah, dan bekerja dengan sempurna setiap hari."
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">MT</div>
+                        <div class="author-avatar">R</div>
                         <div class="author-info">
-                            <h4>Michael Thompson</h4>
-                            <p>Financial Analyst</p>
+                            <h4>Ravian</h4>
+                            <p>Analis Data</p>
                         </div>
                     </div>
                 </div>
@@ -213,67 +218,67 @@
     <!-- FAQ Section -->
     <section class="faq-section" id="faq">
         <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Find answers to common questions about Pteams</p>
+            <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
+            <p class="section-subtitle">Temukan jawaban untuk pertanyaan umum tentang Pteams</p>
             
             <div class="faq-list">
                 <div class="faq-item fade-in">
                     <div class="faq-question">
-                        What is Pteams?
+                        Apa itu Pteams?
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Pteams is a software solution that allows you to use smartphones, tablets, and other computers as additional monitors for your Windows PC over your local network or the internet. It creates a virtual display that can be accessed from any compatible device.</p>
+                        <p>Pteams adalah komunitas yang berisi orang orang dengan tingkat kekreativitasan yang tinggi dan suka dengan hal hal yang mengagumkan.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item fade-in">
                     <div class="faq-question">
-                        Is Pteams free to use?
+                        Apakah Pteams gratis diakses?
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, the basic version of Pteams is completely free for personal and commercial use. There may be premium features available in the future, but the core functionality will remain free. We believe in providing value to our users without hidden costs.</p>
+                        <p>Ya, Pteams sepenuhnya gratis untuk diakses kapan saja dan dimana saja karena kami menyediakan layanan yang terbaik bagi para pengguna.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item fade-in">
                     <div class="faq-question">
-                        What are the system requirements?
+                        Apa saja persyaratan Pteams?
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>For the server: Windows 10 or 11 (64-bit or ARM64). For viewers: Android 5.0+, iOS 12.0+, or any modern web browser for the HTML5 version. All devices need to be connected to the same network for automatic discovery, though manual connection is also possible.</p>
+                        <p>Tidak ada persyaratannya, Pteams hadir untuk komunitas apapun.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item fade-in">
                     <div class="faq-question">
-                        Does it work over Wi-Fi?
+                        Apakah bekerja melalui Wi-Fi?
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, Pteams works over both Wi-Fi and Ethernet connections. For best performance, we recommend using a 5GHz Wi-Fi network or wired Ethernet. The software automatically adapts to network conditions to provide the optimal balance between performance and quality.</p>
+                        <p>Ya, Pteams bekerja melalui koneksi Wi-Fi dan Ethernet. Untuk kinerja terbaik, kami merekomendasikan menggunakan jaringan Wi-Fi 5GHz atau Ethernet berkabel. Karena website nya menggunakan banyak animasi.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item fade-in">
                     <div class="faq-question">
-                        Can I use touch input on secondary displays?
+                        Bisakah saya menggunakan kode web Pteams?
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, Pteams supports touch, pen, and mouse input on compatible secondary devices, effectively turning them into software KVM switches. This means you can interact with applications on your primary PC directly from your secondary devices.</p>
+                        <p>Ya, Pteams dibuat secara open source untuk memberikan contoh website yang modern.</p>
                     </div>
                 </div>
                 
                 <div class="faq-item fade-in">
                     <div class="faq-question">
-                        How many devices can I connect simultaneously?
+                        Apa saja perangkat yang dapat digunakan?
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>There's no hard limit on the number of devices you can connect. Performance will depend on your hardware and network capabilities. Most users successfully connect 2-4 additional displays without any issues. The software is optimized to handle multiple connections efficiently.</p>
+                        <p>Semua perangkat bisa digunakan untuk membuka website Pteams karena website ini dirancang untuk bisa beradaptasi dengan semua tampilan layar seperti PC,laptop,handphone,tablet,dan lain lain.</p>
                     </div>
                 </div>
             </div>
@@ -285,37 +290,37 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Product</h3>
+                    <h3>Produk</h3>
                     <ul class="footer-links">
-                        <li><a href="#download"><i class="fas fa-download"></i> Download</a></li>
-                        <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
-                        <li><a href="#how-it-works"><i class="fas fa-play-circle"></i> How It Works</a></li>
+                        <li><a href="#download"><i class="fas fa-download"></i> Unduh</a></li>
+                        <li><a href="#features"><i class="fas fa-star"></i> Fitur</a></li>
+                        <li><a href="#how-it-works"><i class="fas fa-play-circle"></i> Cara Kerja</a></li>
                         <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Support</h3>
+                    <h3>Dukungan</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
-                        <li><a href="#"><i class="fas fa-users"></i> Forums</a></li>
-                        <li><a href="#"><i class="fas fa-envelope"></i> Contact Us</a></li>
-                        <li><a href="#"><i class="fas fa-tools"></i> Troubleshooting</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Dokumentasi</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> Forum</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Hubungi Kami</a></li>
+                        <li><a href="#"><i class="fas fa-tools"></i> Pemecahan Masalah</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Company</h3>
+                    <h3>Perusahaan</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
                         <li><a href="#"><i class="fas fa-blog"></i> Blog</a></li>
-                        <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
-                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i> Syarat Layanan</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Connect</h3>
+                    <h3>Terhubung</h3>
                     <ul class="footer-links">
                         <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
                         <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
@@ -326,10 +331,14 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Pteams. All rights reserved. | Multi Monitor Software | Turn Devices into Additional Displays</p>
+                <p>&copy; 2025 Pteams. oRyon(Pr)ada</p>
             </div>
         </div>
     </footer>
+    <!-- Scroll Loading Indicator -->
+    <div class="scroll-loading">
+        <i class="fas fa-spinner fa-spin"></i> Menuju section...
+    </div>
 
     <script src="script.js"></script>
 </body>
