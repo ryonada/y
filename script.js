@@ -409,3 +409,399 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// ============================ //
+// LOGIN SYSTEM DENGAN ANIMASI GENSHIN IMPACT - FIXED
+// ============================ //
+
+class LoginSystem {
+    constructor() {
+        this.modal = document.getElementById('login-modal');
+        this.loginForm = document.getElementById('login-form');
+        this.loginBtn = this.loginForm.querySelector('.login-btn');
+        this.logoutBtn = document.getElementById('logout-btn');
+        this.isAnimating = false;
+        this.isLoggedIn = localStorage.getItem('pteams-loggedin') === 'true';
+        
+        this.init();
+    }
+    
+    init() {
+        this.createDoorAnimation();
+        this.createParticles();
+        this.createCloseButton();
+        this.bindEvents();
+        
+        // Cek status login
+        if (this.isLoggedIn) {
+            this.hideLoginModal();
+            this.showLogoutButton();
+        } else {
+            // Tampilkan modal login saat halaman dimuat
+            setTimeout(() => {
+                this.showLogin();
+            }, 800);
+        }
+    }
+    
+    createDoorAnimation() {
+        const doorAnimation = document.createElement('div');
+        doorAnimation.className = 'door-animation';
+        doorAnimation.innerHTML = `
+            <div class="door-left"></div>
+            <div class="door-right"></div>
+            <div class="light-beam"></div>
+            <div class="particles"></div>
+            <div class="success-animation">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="success-text">Selamat Datang!</div>
+            </div>
+        `;
+        this.modal.querySelector('.login-container').appendChild(doorAnimation);
+        
+        this.doorLeft = doorAnimation.querySelector('.door-left');
+        this.doorRight = doorAnimation.querySelector('.door-right');
+        this.lightBeam = doorAnimation.querySelector('.light-beam');
+        this.particlesContainer = doorAnimation.querySelector('.particles');
+        this.successAnimation = doorAnimation.querySelector('.success-animation');
+        this.doorAnimation = doorAnimation;
+    }
+    
+    createCloseButton() {
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'login-close';
+        closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        closeBtn.addEventListener('click', () => {
+            if (!this.isLoggedIn) {
+                this.showError('Anda harus login untuk mengakses website ini');
+            }
+        });
+        this.modal.querySelector('.login-container').appendChild(closeBtn);
+    }
+    
+    createParticles() {
+        // Hapus partikel lama jika ada
+        const oldParticles = this.particlesContainer.querySelectorAll('.particle');
+        oldParticles.forEach(particle => particle.remove());
+        
+        // Buat partikel baru
+        for (let i = 0; i < 80; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random position
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+            
+            // Random size
+            const size = Math.random() * 4 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random animation delay
+            const delay = Math.random() * 3;
+            const duration = Math.random() * 4 + 2;
+            
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${duration}s`;
+            
+            this.particlesContainer.appendChild(particle);
+        }
+    }
+    
+    bindEvents() {
+        // Form submission
+        this.loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleLogin();
+        });
+        
+        // Register link
+        document.getElementById('register-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showRegisterMessage();
+        });
+        
+        // Logout button
+        if (this.logoutBtn) {
+            this.logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.handleLogout();
+            });
+        }
+        
+        // Prevent closing modal by clicking outside
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal && !this.isLoggedIn) {
+                this.showError('Anda harus login untuk mengakses website ini');
+            }
+        });
+    }
+    
+    showLogin() {
+        this.modal.classList.add('active');
+        
+        // Reset form
+        this.loginForm.reset();
+        this.hideError();
+        
+        // Mulai animasi pintu
+        setTimeout(() => {
+            this.doorAnimation.classList.add('active');
+        }, 300);
+        
+        // Aktifkan efek cahaya
+        setTimeout(() => {
+            this.lightBeam.classList.add('active');
+        }, 800);
+        
+        // Animasikan partikel
+        setTimeout(() => {
+            this.animateParticles();
+        }, 1200);
+    }
+    
+    hideLoginModal() {
+        this.modal.classList.remove('active');
+        this.doorAnimation.classList.remove('active');
+        this.lightBeam.classList.remove('active');
+        this.hideError();
+    }
+    
+    animateParticles() {
+        // Partikel sudah dianimasikan melalui CSS
+        // Fungsi ini hanya untuk inisialisasi
+    }
+    
+    async handleLogin() {
+        if (this.isAnimating) return;
+        
+        this.isAnimating = true;
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        // Tampilkan loading state
+        this.loginBtn.classList.add('loading');
+        
+        // Simulasi proses login
+        await this.delay(1800);
+        
+        // Validasi sederhana
+        if (username && password) {
+            if (username.length >= 3 && password.length >= 3) {
+                await this.successLogin();
+            } else {
+                this.showError('Username dan password harus minimal 3 karakter');
+            }
+        } else {
+            this.showError('Harap isi semua field!');
+        }
+        
+        this.loginBtn.classList.remove('loading');
+        this.isAnimating = false;
+    }
+    
+    async successLogin() {
+        // Simpan status login
+        localStorage.setItem('pteams-loggedin', 'true');
+        localStorage.setItem('pteams-username', document.getElementById('username').value);
+        this.isLoggedIn = true;
+        
+        // Tampilkan animasi sukses
+        this.successAnimation.classList.add('active');
+        
+        // Tunggu sebentar untuk menampilkan animasi sukses
+        await this.delay(2200);
+        
+        // Tutup pintu
+        this.doorAnimation.classList.add('exiting');
+        this.lightBeam.classList.remove('active');
+        this.successAnimation.classList.remove('active');
+        
+        // Tunggu animasi selesai
+        await this.delay(1200);
+        
+        // Sembunyikan modal
+        this.hideLoginModal();
+        
+        // Tampilkan tombol logout
+        this.showLogoutButton();
+        
+        // Tampilkan welcome message
+        this.showWelcomeMessage();
+        
+        // Reset untuk penggunaan berikutnya
+        setTimeout(() => {
+            this.doorAnimation.classList.remove('active', 'exiting');
+            this.loginForm.reset();
+        }, 500);
+    }
+    
+    showLogoutButton() {
+        if (this.logoutBtn) {
+            this.logoutBtn.style.display = 'block';
+            this.logoutBtn.innerHTML = `<i class="fas fa-sign-out-alt"></i> Keluar`;
+        }
+    }
+    
+    hideLogoutButton() {
+        if (this.logoutBtn) {
+            this.logoutBtn.style.display = 'none';
+        }
+    }
+    
+    async handleLogout() {
+        // Hapus status login
+        localStorage.removeItem('pteams-loggedin');
+        localStorage.removeItem('pteams-username');
+        this.isLoggedIn = false;
+        
+        // Sembunyikan tombol logout
+        this.hideLogoutButton();
+        
+        // Tampilkan logout message
+        this.showLogoutMessage();
+        
+        // Tampilkan kembali modal login setelah delay
+        setTimeout(() => {
+            this.showLogin();
+        }, 2000);
+    }
+    
+    showError(message) {
+        // Buat atau update elemen error
+        let errorElement = this.loginForm.querySelector('.error-message');
+        if (!errorElement) {
+            errorElement = document.createElement('div');
+            errorElement.className = 'error-message';
+            this.loginForm.insertBefore(errorElement, this.loginForm.firstChild);
+        }
+        
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        
+        // Animasi shake
+        errorElement.style.animation = 'none';
+        setTimeout(() => {
+            errorElement.style.animation = 'shakeError 0.5s ease';
+        }, 10);
+        
+        // Sembunyikan setelah 4 detik
+        setTimeout(() => {
+            this.hideError();
+        }, 4000);
+    }
+    
+    hideError() {
+        const errorElement = this.loginForm.querySelector('.error-message');
+        if (errorElement) {
+            errorElement.style.display = 'none';
+        }
+    }
+    
+    showWelcomeMessage() {
+        const username = localStorage.getItem('pteams-username') || 'Pengguna';
+        this.showToast(`Selamat datang, ${username}!`, 'success');
+    }
+    
+    showLogoutMessage() {
+        this.showToast('Anda telah berhasil logout', 'info');
+    }
+    
+    showRegisterMessage() {
+        this.showToast('Fitur pendaftaran akan segera hadir!', 'info');
+    }
+    
+    showToast(message, type = 'info') {
+        // Buat toast element
+        const toast = document.createElement('div');
+        toast.className = `toast-message toast-${type}`;
+        toast.textContent = message;
+        
+        // Style toast
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? 'rgba(76, 175, 80, 0.9)' : 
+                         type === 'error' ? 'rgba(244, 67, 54, 0.9)' : 
+                         'rgba(33, 150, 243, 0.9)'};
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        `;
+        
+        document.body.appendChild(toast);
+        
+        // Animate in
+        setTimeout(() => {
+            toast.style.transform = 'translateX(0)';
+            toast.style.opacity = '1';
+        }, 100);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            toast.style.transform = 'translateX(100%)';
+            toast.style.opacity = '0';
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 300);
+        }, 3000);
+    }
+    
+    delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+}
+
+// Inisialisasi sistem login setelah DOM siap
+document.addEventListener('DOMContentLoaded', () => {
+    const loginSystem = new LoginSystem();
+    
+    // Tambahkan style untuk toast message
+    const toastStyles = `
+        .toast-message {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    `;
+    
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = toastStyles;
+    document.head.appendChild(styleSheet);
+});
