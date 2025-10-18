@@ -806,6 +806,187 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(styleSheet);
 });
 
+// WhatsApp Float Button Handler
+class WhatsAppButton {
+    constructor() {
+        this.whatsappBtn = document.getElementById('whatsapp-btn');
+        this.whatsappModal = this.createModal();
+        this.isModalOpen = false;
+        
+        this.init();
+    }
+    
+    init() {
+        this.whatsappBtn.addEventListener('click', () => {
+            this.openModal();
+        });
+        
+        // Close modal when clicking outside
+        this.whatsappModal.addEventListener('click', (e) => {
+            if (e.target === this.whatsappModal) {
+                this.closeModal();
+            }
+        });
+    }
+    
+    createModal() {
+        const modal = document.createElement('div');
+        modal.className = 'whatsapp-modal';
+        modal.innerHTML = `
+            <div class="whatsapp-modal-content">
+                <button class="whatsapp-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="whatsapp-modal-header">
+                    <h3><i class="fab fa-whatsapp"></i> Hubungi Kami</h3>
+                    <p>Kirim pertanyaan atau saran melalui WhatsApp</p>
+                </div>
+                <form class="whatsapp-form" id="whatsapp-form">
+                    <div class="form-group">
+                        <input type="text" id="whatsapp-name" placeholder="Nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="whatsapp-message" placeholder="Pesan Anda..." required></textarea>
+                    </div>
+                    <button type="submit" class="whatsapp-submit-btn">
+                        <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
+                    </button>
+                </form>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Close button event
+        modal.querySelector('.whatsapp-modal-close').addEventListener('click', () => {
+            this.closeModal();
+        });
+        
+        // Form submission
+        modal.querySelector('#whatsapp-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleSubmit();
+        });
+        
+        return modal;
+    }
+    
+    openModal() {
+        this.whatsappModal.classList.add('active');
+        this.isModalOpen = true;
+        document.body.style.overflow = 'hidden';
+    }
+    
+    closeModal() {
+        this.whatsappModal.classList.remove('active');
+        this.isModalOpen = false;
+        document.body.style.overflow = '';
+        
+        // Reset form after closing
+        setTimeout(() => {
+            this.whatsappModal.querySelector('#whatsapp-form').reset();
+        }, 300);
+    }
+    
+    handleSubmit() {
+        const name = document.getElementById('whatsapp-name').value.trim();
+        const message = document.getElementById('whatsapp-message').value.trim();
+        
+        if (!name || !message) {
+            this.showError('Harap isi semua field!');
+            return;
+        }
+        
+        if (name.length < 2) {
+            this.showError('Nama harus minimal 2 karakter');
+            return;
+        }
+        
+        if (message.length < 10) {
+            this.showError('Pesan harus minimal 10 karakter');
+            return;
+        }
+        
+        // Format pesan
+        const formattedMessage = this.formatMessage(name, message);
+        const encodedMessage = encodeURIComponent(formattedMessage);
+        const phoneNumber = '+6283111499336';
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        
+        // Redirect ke WhatsApp
+        window.open(whatsappUrl, '_blank');
+        
+        // Tampilkan pesan sukses
+        this.showSuccess();
+        
+        // Tutup modal setelah delay
+        setTimeout(() => {
+            this.closeModal();
+        }, 1500);
+    }
+    
+    formatMessage(name, message) {
+        return `Halo, saya ${name}.\n\nPesan saya:\n${message}\n\n*Pesan ini dikirim melalui website Pteams*`;
+    }
+    
+    showError(message) {
+        // Hapus error sebelumnya
+        this.hideError();
+        
+        const errorElement = document.createElement('div');
+        errorElement.className = 'error-message';
+        errorElement.textContent = message;
+        errorElement.style.cssText = `
+            background: rgba(244, 67, 54, 0.1);
+            color: #ff5252;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            font-size: 0.9rem;
+            text-align: center;
+        `;
+        
+        const form = this.whatsappModal.querySelector('#whatsapp-form');
+        form.insertBefore(errorElement, form.firstChild);
+        
+        // Animasi shake
+        errorElement.style.animation = 'shakeError 0.5s ease';
+        
+        // Hapus error setelah 4 detik
+        setTimeout(() => {
+            this.hideError();
+        }, 4000);
+    }
+    
+    hideError() {
+        const errorElement = this.whatsappModal.querySelector('.error-message');
+        if (errorElement) {
+            errorElement.remove();
+        }
+    }
+    
+    showSuccess() {
+        const submitBtn = this.whatsappModal.querySelector('.whatsapp-submit-btn');
+        const originalText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> Berhasil!';
+        submitBtn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+        submitBtn.disabled = true;
+        
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+        }, 1500);
+    }
+}
+
+// Inisialisasi WhatsApp Button saat DOM siap
+document.addEventListener('DOMContentLoaded', () => {
+    const whatsappButton = new WhatsAppButton();
+});
+
 // WhatsApp Form Handler
 class WhatsAppForm {
     constructor() {

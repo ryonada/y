@@ -324,43 +324,13 @@
         </div>
     </section>
 
-<!-- Tambahkan kode ini di bagian FAQ atau sebelum footer -->
-<section class="contact-form-section" id="contact">
-    <div class="container">
-        <h2 class="section-title">Ajukan Pertanyaan atau Saran</h2>
-        <p class="section-subtitle">Punya pertanyaan ataupun saran? Silakan isi langsung form dibawah ini</p>
-        
-        <div class="contact-form-container fade-in">
-            <form id="question-form" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Nama Anda</label>
-                    <input type="text" id="name" name="name" required>
-                    <div class="input-focus"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Pesan</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                    <div class="input-focus"></div>
-                </div>
-                
-                <button type="submit" class="btn contact-btn">
-                    <span class="btn-text">Kirim via WhatsApp</span>
-                    <div class="btn-loading">
-                        <i class="fas fa-spinner fa-spin"></i>
-                    </div>
-                </button>
-            </form>
-            
-            <div class="form-success" id="form-success">
-                <div class="success-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <p>Berhasil terkirim! Anda akan diarahkan ke WhatsApp.</p>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- WhatsApp Float Button -->
+<div class="whatsapp-float" id="whatsapp-float">
+    <button class="whatsapp-btn" id="whatsapp-btn" title="Kirim pertanyaan atau saran">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+    <div class="whatsapp-tooltip">Ada pertanyaan? Chat kami!</div>
+</div>
 
     <!-- Footer -->
     <footer id="support">
