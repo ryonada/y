@@ -1,30 +1,23 @@
-// Toggle tema gelap/terang
-const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = themeToggle.querySelector('i');
-
-// Cek preferensi tema yang disimpan
+// Ganti kode toggle tema dengan switch
+const themeToggle = document.getElementById('theme-checkbox');
 const currentTheme = localStorage.getItem('theme') || 'dark';
-document.documentElement.setAttribute('data-theme', currentTheme);
-updateThemeIcon(currentTheme);
 
-// Toggle tema saat tombol diklik
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
+// Set tema awal berdasarkan preferensi yang disimpan
+if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeToggle.checked = true;
+} else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    themeToggle.checked = false;
+}
+
+// Toggle tema saat switch diklik
+themeToggle.addEventListener('change', () => {
+    const newTheme = themeToggle.checked ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
 });
 
-// Update ikon tema
-function updateThemeIcon(theme) {
-    if (theme === 'dark') {
-        themeIcon.className = 'fas fa-moon';
-    } else {
-        themeIcon.className = 'fas fa-sun';
-    }
-}
 
 // Toggle menu mobile
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -411,7 +404,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================ //
-// LOGIN SYSTEM DENGAN ANIMASI GENSHIN IMPACT - FIXED
+// LOGIN SYSTEM DENGAN ANIMASI GENSHIN IMPACT
 // ============================ //
 
 class LoginSystem {
@@ -806,7 +799,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(styleSheet);
 });
 
-// WhatsApp Float Button Handler
+// ============================ //
+// WHATSAPP FLOAT BUTTON HANDLER - FIXED FOR ALL PLATFORMS
+// ============================ //
+
 class WhatsAppButton {
     constructor() {
         this.whatsappBtn = document.getElementById('whatsapp-btn');
@@ -817,11 +813,20 @@ class WhatsAppButton {
     }
     
     init() {
-        this.whatsappBtn.addEventListener('click', () => {
-            this.openModal();
-        });
+        if (this.whatsappBtn) {
+            this.whatsappBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.openModal();
+            });
+            
+            // Touch event untuk mobile
+            this.whatsappBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                this.openModal();
+            });
+        }
         
-        // Close modal when clicking outside
+        // Close modal ketika klik di luar
         this.whatsappModal.addEventListener('click', (e) => {
             if (e.target === this.whatsappModal) {
                 this.closeModal();
@@ -834,7 +839,7 @@ class WhatsAppButton {
         modal.className = 'whatsapp-modal';
         modal.innerHTML = `
             <div class="whatsapp-modal-content">
-                <button class="whatsapp-modal-close">
+                <button class="whatsapp-modal-close" type="button">
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="whatsapp-modal-header">
@@ -846,7 +851,7 @@ class WhatsAppButton {
                         <input type="text" id="whatsapp-name" placeholder="Nama Anda" required>
                     </div>
                     <div class="form-group">
-                        <textarea id="whatsapp-message" placeholder="Pesan Anda..." required></textarea>
+                        <textarea id="whatsapp-message" placeholder="Pesan Anda..." rows="4" required></textarea>
                     </div>
                     <button type="submit" class="whatsapp-submit-btn">
                         <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
@@ -875,6 +880,12 @@ class WhatsAppButton {
         this.whatsappModal.classList.add('active');
         this.isModalOpen = true;
         document.body.style.overflow = 'hidden';
+        
+        // Focus pada input pertama
+        setTimeout(() => {
+            const nameInput = this.whatsappModal.querySelector('#whatsapp-name');
+            if (nameInput) nameInput.focus();
+        }, 300);
     }
     
     closeModal() {
@@ -882,9 +893,10 @@ class WhatsAppButton {
         this.isModalOpen = false;
         document.body.style.overflow = '';
         
-        // Reset form after closing
+        // Reset form
         setTimeout(() => {
             this.whatsappModal.querySelector('#whatsapp-form').reset();
+            this.hideError();
         }, 300);
     }
     
@@ -897,40 +909,59 @@ class WhatsAppButton {
             return;
         }
         
-        if (name.length < 2) {
-            this.showError('Nama harus minimal 2 karakter');
+        if (name.length < 1) {
+            this.showError('Nama harus minimal 1 karakter');
             return;
         }
         
-        if (message.length < 10) {
-            this.showError('Pesan harus minimal 10 karakter');
+        if (message.length < 1) {
+            this.showError('Pesan harus minimal 1 karakter');
             return;
         }
         
-        // Format pesan
+        // Format pesan untuk WhatsApp
         const formattedMessage = this.formatMessage(name, message);
-        const encodedMessage = encodeURIComponent(formattedMessage);
-        const phoneNumber = '+6283111499336';
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
         
-        // Redirect ke WhatsApp
-        window.open(whatsappUrl, '_blank');
+        // Encode message untuk URL (FIX: gunakan encodeURIComponent dengan benar)
+        const encodedMessage = encodeURIComponent(formattedMessage);
+        
+        // Format nomor WhatsApp yang benar (FIX: tanpa + dan 0)
+        const phoneNumber = '6283111499336'; // Format internasional tanpa + dan 0
+        
+        // Buat URL WhatsApp (FIX: format URL yang benar)
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+        
+        console.log('WhatsApp URL:', whatsappUrl); // Untuk debugging
         
         // Tampilkan pesan sukses
         this.showSuccess();
         
-        // Tutup modal setelah delay
+        // Redirect ke WhatsApp (FIX: gunakan approach yang universal)
+        setTimeout(() => {
+            this.redirectToWhatsApp(whatsappUrl);
+        }, 1000);
+        
+        // Tutup modal
         setTimeout(() => {
             this.closeModal();
         }, 1500);
     }
     
     formatMessage(name, message) {
-        return `Halo, saya ${name}.\n\nPesan saya:\n${message}\n\n*Pesan ini dikirim melalui website Pteams*`;
+        return `Halo, saya ${name}.\n\n${message}\n\n*Pesan ini dikirim melalui website Pteams*`;
+    }
+    
+    redirectToWhatsApp(url) {
+        // Coba buka di tab baru terlebih dahulu
+        const newWindow = window.open(url, '_blank');
+        
+        // Jika popup diblokir (mobile biasanya), redirect langsung
+        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+            window.location.href = url;
+        }
     }
     
     showError(message) {
-        // Hapus error sebelumnya
         this.hideError();
         
         const errorElement = document.createElement('div');
@@ -950,10 +981,8 @@ class WhatsAppButton {
         const form = this.whatsappModal.querySelector('#whatsapp-form');
         form.insertBefore(errorElement, form.firstChild);
         
-        // Animasi shake
         errorElement.style.animation = 'shakeError 0.5s ease';
         
-        // Hapus error setelah 4 detik
         setTimeout(() => {
             this.hideError();
         }, 4000);
@@ -982,7 +1011,20 @@ class WhatsAppButton {
     }
 }
 
-// Inisialisasi WhatsApp Button saat DOM siap
-document.addEventListener('DOMContentLoaded', () => {
-    const whatsappButton = new WhatsAppButton();
+// Inisialisasi WhatsApp Button
+document.addEventListener('DOMContentLoaded', function() {
+    // Tunggu sebentar untuk memastikan semua elemen sudah dimuat
+    setTimeout(() => {
+        if (document.getElementById('whatsapp-btn')) {
+            window.whatsappButton = new WhatsAppButton();
+            console.log('WhatsApp button initialized successfully');
+        }
+    }, 100);
 });
+
+// Fallback initialization
+if (document.readyState === 'complete') {
+    if (document.getElementById('whatsapp-btn') && !window.whatsappButton) {
+        window.whatsappButton = new WhatsAppButton();
+    }
+}

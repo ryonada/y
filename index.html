@@ -52,12 +52,21 @@
             <div class="logo">
                 <div class="logo-text">Pteams</div>
             </div>
-            <div class="header-controls">
-                <button id="theme-toggle" class="theme-toggle" title="Ubah tema">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn">☰</button>
+<!-- Ganti bagian header controls -->
+<div class="header-controls">
+    <!-- Switch tema gelap/terang -->
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="theme-checkbox">
+            <input type="checkbox" id="theme-checkbox">
+            <div class="slider round">
+                <span class="sun-icon"><i class="fas fa-sun"></i></span>
+                <span class="moon-icon"><i class="fas fa-moon"></i></span>
             </div>
+        </label>
+    </div>
+    <!-- Tombol burger menu hanya untuk mobile -->
+    <button class="mobile-menu-btn">☰</button>
+</div>
             <ul class="nav-menu">
                 <li><a href="#home">Beranda</a></li>
                 <li><a href="#features">Fitur</a></li>
@@ -163,47 +172,39 @@
         </div>
     </section>
 
-    <!-- Downloads Section -->
-    <section id="download">
-        <div class="container">
-            <h2 class="section-title">Unduh Pteams</h2>
-            <p class="section-subtitle">Dapatkan software untuk platform spesifik Anda dan mulai memperluas tampilan hari ini</p>
+<!-- Downloads Section -->
+<section id="download">
+    <div class="container">
+        <h2 class="section-title">Supported Device</h2>
+        <p class="section-subtitle">Pteams dapat diakses melalui berbagai platform dan perangkat yang Anda miliki</p>
+        
+        <div class="downloads-grid">
+            <div class="download-card fade-in">
+                <div class="download-icon"><i class="fab fa-windows"></i></div>
+                <h3>Windows</h3>
+                <p>Untuk PC Windows utama Anda (Windows 10/11, 64-bit & ARM64)</p>
+            </div>
             
-            <div class="downloads-grid">
-                <div class="download-card fade-in">
-                    <div class="download-icon"><i class="fab fa-windows"></i></div>
-                    <h3>Windows Server</h3>
-                    <p>Untuk PC Windows utama Anda (Windows 10/11, 64-bit & ARM64)</p>
-                    <a href="#" class="btn" style="margin-top: 20px;">Unduh <i class="fas fa-download"></i></a>
-                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Versi 1.0.40 | 15 MB</div>
-                </div>
-                
-                <div class="download-card fade-in">
-                    <div class="download-icon"><i class="fab fa-android"></i></div>
-                    <h3>Android Viewer</h3>
-                    <p>Untuk ponsel dan tablet Android (Android 5.0 ke atas)</p>
-                    <a href="#" class="btn" style="margin-top: 20px;">Unduh <i class="fas fa-download"></i></a>
-                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Versi 1.0.36 | 8 MB</div>
-                </div>
-                
-                <div class="download-card fade-in">
-                    <div class="download-icon"><i class="fab fa-apple"></i></div>
-                    <h3>iOS Viewer</h3>
-                    <p>Untuk iPhone dan iPad (iOS 12.0 ke atas)</p>
-                    <a href="#" class="btn" style="margin-top: 20px;">Unduh <i class="fas fa-download"></i></a>
-                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Versi 1.0.28 | 12 MB</div>
-                </div>
-                
-                <div class="download-card fade-in">
-                    <div class="download-icon"><i class="fas fa-globe"></i></div>
-                    <h3>HTML5 Viewer</h3>
-                    <p>Untuk perangkat apapun dengan browser web modern</p>
-                    <a href="#" class="btn btn-orange" style="margin-top: 20px;">Gunakan Online <i class="fas fa-external-link-alt"></i></a>
-                    <div style="margin-top: 10px; font-size: 0.9rem; color: var(--gray);">Tidak perlu instalasi</div>
-                </div>
+            <div class="download-card fade-in">
+                <div class="download-icon"><i class="fab fa-android"></i></div>
+                <h3>Android</h3>
+                <p>Untuk ponsel dan tablet Android (Android 5.0 ke atas)</p>
+            </div>
+            
+            <div class="download-card fade-in">
+                <div class="download-icon"><i class="fab fa-apple"></i></div>
+                <h3>iOS</h3>
+                <p>Untuk iPhone dan iPad (iOS 12.0 ke atas)</p>
+            </div>
+            
+            <div class="download-card fade-in">
+                <div class="download-icon"><i class="fas fa-globe"></i></div>
+                <h3>HTML5 Web</h3>
+                <p>Untuk perangkat apapun dengan browser web modern</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
@@ -214,7 +215,7 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-text">
-                        "Pteams benar-benar mengubah cara saya bekerja. Sebagai developer, saya sekarang dapat memiliki kode di satu layar, dokumentasi di layar lain, dan pengujing di tablet saya. Sangat lancar dan andal."
+                        "Pteams benar-benar mengubah cara saya bekerja. Sebagai developer, saya bisa menambah inspirasi website dari Pteams, tampilannya keren dan desain modern."
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">O</div>
@@ -227,7 +228,7 @@
                 
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-text">
-                        "Awalnya saya ragu, tetapi Pteams melampaui harapan saya. Kinerjanya sangat baik bahkan saat streaming konten HD. Seperti memiliki perangkat keras mahal secara gratis!"
+                        "Awalnya saya ragu, tetapi Pteams melampaui harapan saya. Kinerjanya sangat baik bahkan saat internet tidak stabil, saya masih bisa menjelajahi website Pteams!"
                     </div>
                     <div class="testimonial-author">
                         <div class="author-avatar">R</div>
@@ -370,9 +371,9 @@
                     <h3>Terhubung</h3>
                     <ul class="footer-links">
                         <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=61571064026637"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="https://github.com/ryonada"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="https://www.youtube.com/@pradr"><i class="fab fa-youtube"></i> YouTube</a></li>
                     </ul>
                 </div>
             </div>
@@ -390,5 +391,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>

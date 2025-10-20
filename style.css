@@ -503,7 +503,7 @@ header.scrolled .logo-text {
     color: var(--primary);
 }
 
-/* Downloads Section */
+/* Downloads Section - Updated */
 .downloads-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -514,12 +514,16 @@ header.scrolled .logo-text {
 .download-card {
     background-color: var(--card-bg);
     border-radius: 8px;
-    padding: 30px;
+    padding: 40px 30px;
     text-align: center;
     transition: all 0.4s ease-in-out;
     border: 1px solid var(--light-gray);
     position: relative;
     overflow: hidden;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .download-card:before {
@@ -529,7 +533,8 @@ header.scrolled .logo-text {
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--primary) 0%, var(--orange) 100%);
+    background: linear-gradient(90deg, var(--primary), var(--orange));
+    border-radius: 8px 8px 0 0;
     transition: all 0.4s ease-in-out;
 }
 
@@ -545,7 +550,7 @@ header.scrolled .logo-text {
 
 .download-icon {
     font-size: 3rem;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: var(--primary);
     height: 80px;
     width: 80px;
@@ -554,7 +559,7 @@ header.scrolled .logo-text {
     justify-content: center;
     background: rgba(26, 115, 232, 0.1);
     border-radius: 50%;
-    margin: 0 auto 20px;
+    margin: 0 auto 25px;
     transition: all 0.4s ease-in-out;
     position: relative;
     z-index: 2;
@@ -576,10 +581,10 @@ header.scrolled .logo-text {
 
 .download-card p {
     color: var(--gray);
-    margin-bottom: 20px;
     transition: all 0.3s ease-in-out;
     position: relative;
     z-index: 2;
+    line-height: 1.6;
 }
 
 .download-card:hover h3 {
@@ -2777,4 +2782,451 @@ section.scroll-target.highlight::before {
     .whatsapp-modal-content {
         padding: 20px;
     }
+}
+
+/* ============================ */
+/* PERBAIKAN WHATSAPP MODAL UNTUK MOBILE */
+/* ============================ */
+
+@media (max-width: 768px) {
+    .whatsapp-modal-content {
+        width: 95%;
+        max-width: 95%;
+        margin: 10px;
+        padding: 25px 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .whatsapp-form textarea {
+        min-height: 120px;
+        font-size: 16px; /* Mencegah zoom di iOS */
+    }
+    
+    .whatsapp-form input {
+        font-size: 16px; /* Mencegah zoom di iOS */
+    }
+    
+    .whatsapp-submit-btn {
+        padding: 16px;
+        font-size: 16px; /* Ukuran font yang lebih mudah di-tap */
+    }
+}
+
+@media (max-width: 480px) {
+    .whatsapp-modal-content {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
+    
+    .whatsapp-modal-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .whatsapp-modal-header p {
+        font-size: 0.9rem;
+    }
+    
+    .whatsapp-form input,
+    .whatsapp-form textarea {
+        padding: 14px 12px;
+    }
+}
+
+/* Pastikan modal bisa di-scroll di mobile */
+.whatsapp-modal-content {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Perbaikan untuk tombol WhatsApp di mobile */
+.whatsapp-btn {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Pastikan form elements mudah di-tap di mobile */
+.whatsapp-form input,
+.whatsapp-form textarea,
+.whatsapp-submit-btn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 8px;
+}
+
+/* Perbaikan untuk iOS */
+@supports (-webkit-touch-callout: none) {
+    .whatsapp-modal-content {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* ============================ */
+/* PERBAIKAN WHATSAPP UNTUK SEMUA PLATFORM */
+/* ============================ */
+
+/* WhatsApp Modal Improvements */
+.whatsapp-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.whatsapp-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.whatsapp-modal-content {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--light-gray);
+    transform: scale(0.9) translateY(20px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.whatsapp-modal.active .whatsapp-modal-content {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* Form Improvements */
+.whatsapp-form input,
+.whatsapp-form textarea {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-size: 16px; /* Prevent zoom on iOS */
+    transition: all 0.3s ease;
+    font-family: inherit;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.whatsapp-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.whatsapp-form input:focus,
+.whatsapp-form textarea:focus {
+    outline: none;
+    border-color: #25D366;
+    background: rgba(37, 211, 102, 0.08);
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
+}
+
+/* Submit Button Improvements */
+.whatsapp-submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+}
+
+.whatsapp-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .whatsapp-modal {
+        padding: 10px;
+    }
+    
+    .whatsapp-modal-content {
+        padding: 25px 20px;
+        margin: 0;
+        max-height: 85vh;
+    }
+    
+    .whatsapp-form input,
+    .whatsapp-form textarea {
+        padding: 14px;
+        font-size: 16px; /* Important for iOS */
+    }
+    
+    .whatsapp-submit-btn {
+        padding: 16px;
+        font-size: 16px;
+    }
+    
+    /* Improve touch targets */
+    .whatsapp-modal-close {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .whatsapp-modal-content {
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
+    
+    .whatsapp-modal-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .whatsapp-modal-header p {
+        font-size: 0.9rem;
+    }
+}
+
+/* iOS Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+    .whatsapp-modal-content {
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+    
+    .whatsapp-form input,
+    .whatsapp-form textarea {
+        font-size: 16px; /* Prevent zoom */
+    }
+}
+
+/* Android Chrome Fixes */
+@supports (-webkit-touch-callout: none) and (not (-webkit-overflow-scrolling: touch)) {
+    .whatsapp-modal {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Smooth scrolling for modal */
+.whatsapp-modal-content {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* WhatsApp Float Button Mobile Fixes */
+.whatsapp-btn {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Error Message Improvements */
+.error-message {
+    background: rgba(244, 67, 54, 0.1);
+    color: #ff5252;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    font-size: 0.9rem;
+    text-align: center;
+    animation: shakeError 0.5s ease;
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+/* Loading state untuk submit button */
+.whatsapp-submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ============================ */
+/* SWITCH THEME STYLES - REVISED COLORS */
+/* ============================ */
+
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: var(--light-gray);
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+}
+
+.slider:before {
+    background-color: white;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+    background-color: var(--primary);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.sun-icon, .moon-icon {
+    font-size: 14px;
+    z-index: 1;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+/* Warna matahari kuning */
+.sun-icon {
+    color: #FFD700; /* Kuning emas */
+    opacity: 0.8;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Warna bulan gelap */
+.moon-icon {
+    color: #2C3E50; /* Biru gelap/abu-abu */
+    opacity: 0.8;
+}
+
+/* Efek saat switch aktif/terang */
+input:not(:checked) + .slider .sun-icon {
+    opacity: 1;
+    transform: scale(1.1);
+    color: #FFD700;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
+}
+
+input:not(:checked) + .slider .moon-icon {
+    opacity: 0.4;
+    color: #34495E;
+}
+
+/* Efek saat switch aktif/gelap */
+input:checked + .slider .sun-icon {
+    opacity: 0.4;
+    color: #FFA500; /* Orange lebih redup */
+}
+
+input:checked + .slider .moon-icon {
+    opacity: 1;
+    transform: scale(1.1);
+    color: #ECF0F1; /* Putih keabuan untuk kontras */
+    text-shadow: 0 0 5px rgba(236, 240, 241, 0.5);
+}
+
+/* ============================ */
+/* PERBAIKAN RESPONSIVE STYLES */
+/* ============================ */
+
+/* Sembunyikan tombol burger menu pada layar lebar */
+@media (min-width: 769px) {
+    .mobile-menu-btn {
+        display: none !important;
+    }
+    
+    .nav-menu {
+        display: flex !important;
+    }
+}
+
+/* Tampilkan tombol burger menu hanya pada layar kecil */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex !important;
+    }
+    
+    .nav-menu {
+        display: none;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+}
+
+/* ============================ */
+/* PENYESUAIAN HEADER CONTROLS */
+/* ============================ */
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Penyesuaian untuk switch tema */
+.theme-switch-wrapper {
+    margin-right: 0;
 }
